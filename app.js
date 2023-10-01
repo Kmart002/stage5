@@ -4,7 +4,7 @@ const multer = require('multer');
 const path = require ('path');
 const cors = require('cors');
 const app = express();
-const port = 6000;
+const port = 6006;
 
 // In-memory database to store video information
 const videos = [];
