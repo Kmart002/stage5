@@ -2,9 +2,7 @@
 const express = require ('express');
 const multer = require('multer');
 const path = require ('path');
-const fs = require ('fs');
-const stream = require('stream');
-
+const cors = require('cors');
 const app = express();
 const port = 6000;
 
@@ -57,14 +55,14 @@ app.get('/videos', (req, res) => {
   const videoList = videos.map((video) => ({ id: video.id, filename: video.filename }));
   res.json({ videos: videoList });
 });
-
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://github.com');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  next();
-});
+app.use(cors());
+// app.use((req, res, next) => {
+//   res.setHeader('Access-Control-Allow-Origin', 'https://github.com');
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//   res.setHeader('Access-Control-Allow-Credentials', true);
+//   next();
+// });
 
 
 app.listen(port, () => {
