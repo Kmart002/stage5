@@ -83,8 +83,27 @@ app.post('/upload', upload.single('video'), async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+// Get video by id
+app.get('/video/:id', (req, res) => {
+  const id = req.params.id;
+  const videoInfo = videos.find((video) => video.id === id);
 
-// ... (Rest of your routes)
+  if (!videoInfo) {
+    return res.status(404).json({ error: 'Video not found' });
+  }
+
+  const videoPath = path.join(__dirname, 'uploads', videoInfo.filename);
+  res.sendFile(videoPath);
+});
+
+// GET request to retrieve a list of all uploaded videos
+app.get('/videos', (req, res) => {
+  const videoList = videos.map((video) => ({
+    id: video.id,
+    filename: video.filename,
+  }));
+  res.json({ videos: videoList });
+});
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
