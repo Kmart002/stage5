@@ -173,7 +173,11 @@ Body:
     Video played 
   }
 
-
+### Get all videos
+HTTP Method: GET
+   Endpoint: https://stage5-4qe0.onrender.com/videos
+   Description: All videos displayed
+   
 ## KNOWN LIMITATIONS AND ASSUMPTIONS
   This API uses mongoDB atlas for demonstration purposes.
   Input validation is handled by simple IF statements. It is important to use more robust validation and error handling in a production application.
